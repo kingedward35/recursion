@@ -5,7 +5,7 @@
 
 var stringifyJSON = function(object) {
   var quotes = '"';
-  var arr = [];
+  var array = [];
   var str = '';
 
   if (object === undefined || typeof object === 'function') {
@@ -16,19 +16,19 @@ var stringifyJSON = function(object) {
      return (quotes + object + quotes);
   } else if (Array.isArray(object)) {
     for (var i = 0; i < object.length; i += 1) {
-      arr.push(stringifyJSON(object[i]));
+      array.push(stringifyJSON(object[i]));
     }
 
-    return '[' + arr.join(',') + ']';
+    return '[' + array.join(',') + ']';
   } else {
-    var arr2 = [];
+    var array2 = [];
     for (var key in object) {
       if (stringifyJSON(object[key])) {
-      arr2.push(quotes + key + quotes + ':' + stringifyJSON(object[key]));
+      array2.push(quotes + key + quotes + ':' + stringifyJSON(object[key]));
     }
   }
 
-  return '{' + arr2 + '}';
+  return '{' + array2 + '}';
   }
 };
   
